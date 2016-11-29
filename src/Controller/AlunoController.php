@@ -21,7 +21,21 @@ class AlunoController extends Controller
         $dao = new AlunoDao();
         $alunos = $dao->find();
         return new Response(
-            parent::encodeXml($alunos, 'Aluno'),
+            parent::encodeXmlCollection($alunos, 'Aluno'),
+            200,
+            array(
+                'Content-Type' => 'application/xml'
+            )
+        );
+    }
+
+    public function byId(Application $app, $ra)
+    {
+        $dao = new AlunoDao();
+        $aluno = $dao->byId('RA', $ra);
+        $xml = parent::encodeXmlObject($aluno, 'Aluno');
+        return new Response(
+            $xml,
             200,
             array(
                 'Content-Type' => 'application/xml'

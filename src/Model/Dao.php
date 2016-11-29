@@ -78,39 +78,16 @@ abstract class Dao
         }
     }
 
-    public function byId($id)
+    public function byId($field, $id)
     {
         try{
             DB::beginTransaction();
 
             $premio = DB::table($this->tableName)
-                ->where('codigo', $id)
+                ->where($field, $id)
                 ->first();
             DB::commit();
             return $premio;
-        } catch (Exception $ex){
-            DB::rollback();
-            throw $ex;
-        }
-    }
-
-    public function join($parameters = array())
-    {
-        try{
-            DB::beginTransaction();
-            return DB::table($this->tableName)
-                ->join(
-                    $parameters['join'][0],
-                    $parameters['join'][1],
-                    '=',
-                    $parameters['join'][2]
-                )
-                ->select(
-                    $parameters['fields'][0],
-                    $parameters['fields'][1]
-                )
-                ->orderBy('nome')
-                ->get();
         } catch (Exception $ex){
             DB::rollback();
             throw $ex;
