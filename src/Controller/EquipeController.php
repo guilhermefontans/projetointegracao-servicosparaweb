@@ -3,46 +3,46 @@
 namespace Integrador\Controller;
 
 use Integrador\Controller\Controller;
-use Integrador\Model\AlunoDao;
+use Integrador\Model\EquipeDao;
 use Silex\Application;
 
 /**
- * Class AlunoController
+ * Class EquipeController
  *
  * @category
  * @package  Controller
  * @author   Guilherme Fontans <guilherme.fontans@gmail.com>
  */
-class AlunoController extends Controller
+class EquipeController extends Controller
 {
     public function all(Application $app)
     {
-        $dao = new AlunoDao();
-        $alunos = $dao->find();
-        $xml = parent::encodeXmlCollection($alunos, 'Aluno');
+        $dao = new EquipeDao();
+        $equipes = $dao->find();
+        $xml = parent::encodeXmlCollection($equipes, 'Equipe');
         return parent::sendResponse(
             $xml,
             200
         );
     }
 
-    public function byId(Application $app, $ra)
+    public function byId(Application $app, $id)
     {
-        $dao = new AlunoDao();
-        $aluno = $dao->byId('RA', $ra);
-        $xml = parent::encodeXmlObject($aluno, 'Aluno');
+        $dao = new EquipeDao();
+        $equipe = $dao->byId('Id_Equipe', $id);
+        $xml = parent::encodeXmlObject($equipe, 'Equipe');
         return parent::sendResponse(
             $xml,
             200
         );
     }
 
-    public function add(Application $app, $ra, $nome, $email, $telefone, $senha)
+    public function add(Application $app, $id, $nome, $email, $telefone, $senha)
     {
-        $dao = new AlunoDao();
+        $dao = new EquipeDao();
         $sala = $dao->insert(
             array(
-                'RA' => $ra,
+                'Id_Equipe' => $id,
                 'Nome' => $nome,
                 'Email' => $email,
                 'Telefone' => $telefone,
@@ -51,21 +51,21 @@ class AlunoController extends Controller
         );
         return parent::sendResponse(
             parent::getMessageInXml(
-                "Aluno",
-                "Aluno Adicionado"
+                "Equipe",
+                "Equipe Adicionada"
             ),
             200
         );
     }
 
-    public function update(Application $app, $ra, $nome, $email, $telefone, $senha)
+    public function update(Application $app, $id, $nome, $email, $telefone, $senha)
     {
-        $dao = new AlunoDao();
+        $dao = new EquipeDao();
         $sala = $dao->update(
             array(
-                'RA',
+                'Id_Equipe',
                 '=',
-                $ra
+                $id
             ),
             array(
                 'Nome' => $nome,
@@ -76,27 +76,27 @@ class AlunoController extends Controller
         );
         return parent::sendResponse(
             parent::getMessageInXml(
-                "Aluno",
-                "Aluno Alterado"
+                "Equipe",
+                "Equipe Alterada"
             ),
             200
         );
     }
 
-    public function delete(Application $app, $ra)
+    public function delete(Application $app, $id)
     {
-        $dao = new AlunoDao();
+        $dao = new EquipeDao();
         $sala = $dao->delete(
             array(
-                'RA',
+                'Id_Equipe',
                 '=',
-                $ra
+                $id
             )
         );
         return parent::sendResponse(
             parent::getMessageInXml(
-                "Aluno",
-                "Aluno Apagado"
+                "Equipe",
+                "Equipe Apagada"
             ),
             200
         );

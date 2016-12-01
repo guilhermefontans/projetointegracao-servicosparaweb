@@ -3,23 +3,23 @@
 namespace Integrador\Controller;
 
 use Integrador\Controller\Controller;
-use Integrador\Model\SalaDao;
+use Integrador\Model\RecursoDao;
 use Silex\Application;
 
 /**
- * Class SalaController
+ * Class RecursoController
  *
  * @category
  * @package  Controller
  * @author   Guilherme Fontans <guilherme.fontans@gmail.com>
  */
-class SalaController extends Controller
+class RecursoController extends Controller
 {
     public function all(Application $app)
     {
-        $dao = new SalaDao();
-        $salas = $dao->find();
-        $xml = parent::encodeXmlCollection($salas, 'Sala');
+        $dao = new RecursoDao();
+        $recursos = $dao->find();
+        $xml = parent::encodeXmlCollection($recursos, 'Recurso');
         return parent::sendResponse(
             $xml,
             200
@@ -28,52 +28,52 @@ class SalaController extends Controller
 
     public function byId(Application $app, $codigo)
     {
-        $dao = new SalaDao();
-        $sala = $dao->byId('Id_Sala', $codigo);
-        $xml = parent::encodeXmlObject($sala, 'Sala');
+        $dao = new RecursoDao();
+        $recurso = $dao->byId('Id_Recurso', $codigo);
+        $xml = parent::encodeXmlObject($recurso, 'Recurso');
         return parent::sendResponse(
             $xml,
             200
         );
     }
 
-    public function add(Application $app, $codigo, $descricao, $adaptada)
+    public function add(Application $app, $codigo, $descricao, $quantidade)
     {
-        $dao = new SalaDao();
-        $sala = $dao->insert(
+        $dao = new RecursoDao();
+        $recurso = $dao->insert(
             array(
-                'Id_Sala' => $codigo,
+                'Id_Recurso' => $codigo,
                 'Descricao' => $descricao,
-                'Adaptada' => $adaptada
+                'Quantidade' => $quantidade
             )
         );
         return parent::sendResponse(
             parent::getMessageInXml(
-                "Sala",
-                "Sala Adicionada"
+                "Recurso",
+                "Recurso Adicionado"
             ),
             200
         );
     }
 
-    public function update(Application $app, $codigo, $descricao, $adaptada)
+    public function update(Application $app, $codigo, $descricao, $quantidade)
     {
-        $dao = new SalaDao();
-        $sala = $dao->update(
+        $dao = new RecursoDao();
+        $recurso = $dao->update(
             array(
-                'Id_Sala',
+                'Id_Recurso',
                 '=',
                 $codigo
             ),
             array(
                 'Descricao' => $descricao,
-                'Adaptada' => $adaptada
+                'Quantidade' => $quantidade
             )
         );
         return parent::sendResponse(
             parent::getMessageInXml(
-                "Sala",
-                "Sala Alterada"
+                "Recurso",
+                "Recurso Alterado"
             ),
             200
         );
@@ -81,18 +81,18 @@ class SalaController extends Controller
 
     public function delete(Application $app, $codigo)
     {
-        $dao = new SalaDao();
-        $sala = $dao->delete(
+        $dao = new RecursoDao();
+        $recurso = $dao->delete(
             array(
-                'Id_Sala',
+                'Id_Recurso',
                 '=',
                 $codigo
             )
         );
         return parent::sendResponse(
             parent::getMessageInXml(
-                "Sala",
-                "Sala Apagada"
+                "Recurso",
+                "Recurso Apagado"
             ),
             200
         );
