@@ -211,7 +211,7 @@ CREATE TABLE `Palestrante` (
 
 LOCK TABLES `Palestrante` WRITE;
 /*!40000 ALTER TABLE `Palestrante` DISABLE KEYS */;
-INSERT INTO `Palestrante` VALUES (1,'MARK ZUKERBERG','Mark Elliot Zuckerberg ? um programador e empres?rio norte-americano, que ficou conhecido internacionalmente por ser um dos fundadores do Facebook, a maior rede social do mundo.','zuckerberg.jpg'),(2,'BILL GATES','William Henry Gates III mais conhecido como Bill Gates, ? um magnata, filantropo e autor norte-americano, que ficou conhecido por fundar junto com Paul Allen a Microsoft, a maior e mais conhecida empresa','ill.jpg'),(3,'STEVE JOBS','Steven Paul Jobs foi um inventor, empres?rio e magnata americano no setor da inform?tica. Notabilizou-se como co-fundador, presidente e diretor executivo da Apple Inc.','jobs.jpg');
+INSERT INTO `Palestrante` VALUES (1,'MARK ZUKERBERG','Mark Elliot Zuckerberg ? um programador e empres?rio norte-americano, que ficou conhecido internacionalmente por ser um dos fundadores do Facebook, a maior rede social do mundo.','zuckerberg.jpg'),(2,'BILL GATES','William Henry Gates  mais conhecido como Bill Gates,  um magnata, filantropo e autor norte-americano, que ficou conhecido por fu ndar junto com Paul Allen a Microsoft, a maior e mais conhecida empresa','William Henry Gates  mais conhecido como Bill Gate'),(3,'STEVE JOBS','Steven Paul Jobs foi um inventor, empres?rio e magnata americano no setor da inform?tica. Notabilizou-se como co-fundador, presidente e diretor executivo da Apple Inc.','jobs.jpg');
 /*!40000 ALTER TABLE `Palestrante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +288,7 @@ CREATE TABLE `Sala` (
 
 LOCK TABLES `Sala` WRITE;
 /*!40000 ALTER TABLE `Sala` DISABLE KEYS */;
-INSERT INTO `Sala` VALUES (1,'AUDITORIO POA TERREO','SIM'),(2,'AUDITORIO POA 2? ANDAR','NAO'),(3,'AUDITORIO POA 3? ANDAR','NAO');
+INSERT INTO `Sala` VALUES (1,'AUDITORIO POA TERREO','SIM'),(2,'AUDITORIO POA 2? ANDAR','NAO'),(3,'AUDITORIO POA 3? ANDAR','NAO'),(4,'teste','nao'),(5,'teste','nao'),(7,'hueheuheue','sim'),(9,'teste','nao'),(10,'teste','nao'),(20,'teste','nao'),(21,'teste','nao');
 /*!40000 ALTER TABLE `Sala` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,4 +352,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-29 18:34:50
+-- Dump completed on 2016-12-06 21:25:22

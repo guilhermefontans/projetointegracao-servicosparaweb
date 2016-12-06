@@ -15,6 +15,10 @@ abstract class Controller
 {
     public function encodeXmlCollection($data = array(), $tableName)
     {
+        if(count($data) < 1){
+            return $this->getMessageInXml($tableName, "Sem elementos cadastrados");
+        }
+
 		$database = new \SimpleXMLElement('<?xml version="1.0"?><database></database>');
         $database->addAttribute('name','eventoqi');
 
@@ -32,8 +36,11 @@ abstract class Controller
 
     public function encodeXmlObject($data, $tableName)
     {
+        if(!$data){
+            return $this->getMessageInXml($tableName, "URL inválida");
+        }
+
 		$database = new \SimpleXMLElement('<?xml version="1.0"?><database></database>');
-        if($data){
             $database->addAttribute('name','eventoqi');
 
             $table = $database->addChild('table');
@@ -43,8 +50,6 @@ abstract class Controller
                 $collumn->addAttribute('name',$key);
             }
 		    return $database->asXML();
-        }
-        return 0;
 	}
 
     public function sendResponse($response, $statusRequest)
